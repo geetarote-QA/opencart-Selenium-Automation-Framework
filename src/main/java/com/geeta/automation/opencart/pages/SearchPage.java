@@ -6,18 +6,18 @@ import com.geeta.automation.opencart.base.BasePage;
 
 public class SearchPage extends BasePage{
 
-	private By macBookProduct = By.cssSelector("img[alt='MacBook']");//Locator for a MacBook product link
-	
+		
 	public SearchPage(WebDriver driver) {
 		super(driver);
 	}
-	
-	//clicks the MacBook product from search results
-	public ProductPage clickMacBook() {
-		clickElement (macBookProduct);
-		return new ProductPage (driver);//returns ProductPage because clicking MacBook navigates to the product page
+			
+	//CLicks a product from the search results using product name 
+	public ProductPage clickProduct(String productName) {
+		By product = By.cssSelector("img[alt='"+ productName +"']");
+		clickElement(product);				
+		return new ProductPage(driver);
 	}
-		
+	
 	public boolean isProductDisplayed(String productName) {
 		By product = By.cssSelector("img[alt='" + productName + "']");
 		return isElementDisplayed (product);

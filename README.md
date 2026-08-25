@@ -1,3 +1,15 @@
+## 🛠️ Technologies & Tools
+
+| Technology / Tool  | Purpose                                    |
+| ------------------ | ------------------------------------------ |
+| Java               | Programming language                       |
+| Selenium WebDriver | Web UI automation                          |
+| TestNG             | Test execution and assertions              |
+| Maven              | Build and dependency management            |
+| WebDriverManager   | WebDriver setup                            |
+| Page Object Model  | Framework design pattern                   |
+| Git & GitHub       | Version control and source-code management |
+| Apache Commons IO  | Screenshot file handling                   |
 # OpenCart Selenium Automation Framework
 
 A **Selenium WebDriver automation framework built with Java, TestNG, and Maven** for automating key e-commerce workflows in the OpenCart demo application.

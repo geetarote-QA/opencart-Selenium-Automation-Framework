@@ -19,7 +19,7 @@ public class CheckoutTest extends BaseTest{
 		HomePage homePage= new HomePage(driver);
 		SearchPage searchPage= homePage.searchProduct("MacBook");
 		
-		ProductPage productPage = searchPage.clickMacBook();
+		ProductPage productPage = searchPage.clickProduct("MacBook");
 		
 		//add product to cart
 		productPage.clickAddToCart();

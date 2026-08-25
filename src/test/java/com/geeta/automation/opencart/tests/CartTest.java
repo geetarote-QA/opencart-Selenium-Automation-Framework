@@ -10,32 +10,33 @@ import com.geeta.automation.opencart.pages.ProductPage;
 import com.geeta.automation.opencart.pages.SearchPage;
 
 public class CartTest extends BaseTest{
+	
+	
 	@Test
-	public void addMacBookToCartTest() {
+	public void addProductToCartTest() {
 		
-		HomePage homePage= new HomePage(driver);//create HomePage object
+		String productName="MacBook";
+		HomePage homepage = new HomePage(driver);
 		
-		SearchPage searchPage = homePage.searchProduct("MacBook"); // search for MacBook
+		SearchPage searchPage = homepage.searchProduct(productName);
+		ProductPage productPage = searchPage.clickProduct(productName);
+		productPage.clickAddToCart();
 		
-		ProductPage productPage = searchPage.clickMacBook(); //click MacBook from search results
+		CartPage cartPage = productPage.goToCart();
+		//Verify that shopping cart is displayed
+		Assert.assertTrue(cartPage.isShoppingCartDisplayed(), " Shopping cart page is not displayed ");
 		
-		productPage.clickAddToCart(); //Click add to cart button
-		
-		CartPage cartPage= productPage.goToCart(); //Navigate to shopping cart
-		
-		//Verify that shopping cart page is displayed
-		Assert.assertTrue(cartPage.isShoppingCartDisplayed(), "Shopping cart page is not displayed");
-		
-		//Verify MacBook is displayed
-		Assert.assertTrue (cartPage.isMacBookDisplayed(), "MacBook is not displayed in the cart");
-		
+		// Verify product is displayed
+		Assert.assertTrue(cartPage.isProductDisplayed(productName), productName+ " is not displayed in the cart. ");
+
 		//Verify quantity
-		Assert.assertEquals(cartPage.getQuantity(), "1", "MacBook quantity is incorrect");
+		Assert.assertEquals(cartPage.getQuantity(productName),"1",productName+ " quantity is incorrect ");
 		
-		//Verify unit value
-		Assert.assertEquals(cartPage.getUnitPrice(), "$602.00", "MacBook unit price is incorrect");
-			
+		//Verify unit price
+		Assert.assertEquals(cartPage.getUnitPrice(productName),"$602.00", productName + " unit price is incorrect ");
 		
+	
+	
 	}
 
 }
