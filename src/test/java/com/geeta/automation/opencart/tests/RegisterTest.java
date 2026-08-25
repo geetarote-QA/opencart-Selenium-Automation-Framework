@@ -28,9 +28,8 @@ public class RegisterTest extends BaseTest{
 	
 	@Test(dataProvider = "registrationData")
 	public void registerNewUserTest(
-			String firstname,
+			String firstName,
 			String lastName,
-			//String email,	
 			String telephone,
 			String password)  {
 	
@@ -41,7 +40,7 @@ public class RegisterTest extends BaseTest{
 		
 		String email = generateUniqueEmail();
 		
-		registerPage.enterFirstName(firstname);
+		registerPage.enterFirstName(firstName);
 		registerPage.enterLastName(lastName);
 		registerPage.enterEmail(email);
 		registerPage.enterTelephone(telephone);
@@ -57,23 +56,6 @@ public class RegisterTest extends BaseTest{
         Assert.assertTrue(registerPage.isRegistrationSuccessful(), "Registration was not successful");
 	}
 
-	@Test 
-	public void registerNewUserTest() {
-		
-		HomePage homepage = new HomePage (driver);
-		
-		//Navigate from HomePAge to RegisterPage
-		RegisterPage registerPage = homepage.goToRegister();
-		
-		//Enter registration details
-        registerPage.enterFirstName("Vedant");
-        registerPage.enterLastName("Automation");
-        registerPage.enterEmail("Vedant.opencart001@gmail.com");
-        registerPage.enterTelephone("3035550102");
-        registerPage.enterPassword("OpenCart@2026");
-        registerPage.enterConfirmPassword("OpenCart@2026");
-       
-      	}
 	
 	@Test
 	public void registrationWithMissingLastName() {
@@ -86,7 +68,8 @@ public class RegisterTest extends BaseTest{
 		registerPage.enterEmail(generateUniqueEmail()); // Generate a unique email for this registration attempt
 		registerPage.enterTelephone("4345354557"); //Enter a valid telephone number
 		registerPage.enterPassword("Test@123");
-		registerPage.enterConfirmPassword("Test@123");;
+		registerPage.enterConfirmPassword("Test@123");
+		
 		registerPage.acceptPrivacyPolicy();// Accept a Privacy Policy before submitting the form
 		registerPage.clickContinue(); //SUbmit Registration form
 

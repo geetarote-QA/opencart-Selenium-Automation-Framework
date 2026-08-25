@@ -9,6 +9,7 @@ import com.geeta.automation.opencart.pages.CheckoutPage;
 import com.geeta.automation.opencart.pages.HomePage;
 import com.geeta.automation.opencart.pages.ProductPage;
 import com.geeta.automation.opencart.pages.SearchPage;
+import com.geeta.automation.opencart.utils.TestDataReader;
 
 public class CheckoutTest extends BaseTest{
 	
@@ -33,17 +34,32 @@ public class CheckoutTest extends BaseTest{
 		checkoutPage.clickContinue();
 		
 		//Enter Billing details 
-		checkoutPage.enterFirstName("Geeta");
-		checkoutPage.enterLastName("Rane");
-		checkoutPage.enterEmail("abc@gmail.com");
-		checkoutPage.enterTelephone("6354723575");
-		checkoutPage.enterAddress("123 Main street");
-		checkoutPage.enterCity("Parker");
-		checkoutPage.enterPostCode("80134");
-		
-		//Select country and state
-		checkoutPage.selectCountry("United States");
-		checkoutPage.selectState("Colorado");
+		checkoutPage.enterFirstName(
+				TestDataReader.getTestData("checkout.firstName"));
+
+		checkoutPage.enterLastName(
+		        TestDataReader.getTestData("checkout.lastName"));
+
+		checkoutPage.enterEmail(
+		        TestDataReader.getTestData("checkout.email"));
+
+		checkoutPage.enterTelephone(
+		        TestDataReader.getTestData("checkout.telephone"));
+
+		checkoutPage.enterAddress(
+		        TestDataReader.getTestData("checkout.address"));
+
+		checkoutPage.enterCity(
+		        TestDataReader.getTestData("checkout.city"));
+
+		checkoutPage.enterPostCode(
+		        TestDataReader.getTestData("checkout.postCode"));
+
+		checkoutPage.selectCountry(
+		        TestDataReader.getTestData("checkout.country"));
+
+		checkoutPage.selectState(
+		        TestDataReader.getTestData("checkout.state"));
 		
 		//continue billing
 		checkoutPage.clickBillingContinue();
