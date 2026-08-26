@@ -1,24 +1,26 @@
 ## 🛠️ Technologies & Tools
+| Technology / Tool  | Purpose                                     |
+| ------------------ | ------------------------------------------- |
+| Java               | Programming language                        |
+| Selenium WebDriver | Web UI automation                           |
+| TestNG             | Test execution and assertions               |
+| Maven              | Build and dependency management             |
+| WebDriverManager   | WebDriver setup                             |
+| Page Object Model  | Framework design pattern                    |
+| Git & GitHub       | Version control and source-code management  |
+| Apache Commons IO  | Screenshot file handling                    |
+| Java Properties    | External test-data/configuration management |
 
-| Technology / Tool  | Purpose                                    |
-| ------------------ | ------------------------------------------ |
-| Java               | Programming language                       |
-| Selenium WebDriver | Web UI automation                          |
-| TestNG             | Test execution and assertions              |
-| Maven              | Build and dependency management            |
-| WebDriverManager   | WebDriver setup                            |
-| Page Object Model  | Framework design pattern                   |
-| Git & GitHub       | Version control and source-code management |
-| Apache Commons IO  | Screenshot file handling                   |
+
 # OpenCart Selenium Automation Framework
 
-A **Selenium WebDriver automation framework built with Java, TestNG, and Maven** for automating key e-commerce workflows in the OpenCart demo application.
+## Selenium WebDriver automation framework built with Java, TestNG, and Maven** for automating key e-commerce workflows in the OpenCart demo application.
 
 The framework follows the **Page Object Model (POM)** design pattern and focuses on reusable page actions, centralized WebDriver management, configuration management, explicit waits, organized test execution, and automatic failure screenshot capture.
 
 ## 📌 Project Overview
 
-This project automates key OpenCart workflows, including:
+This project automates key OpenCart e-commerce workflows, including:
 
 * Login
 * User Registration
@@ -28,22 +30,22 @@ This project automates key OpenCart workflows, including:
 * Shopping Cart Validation
 * Guest Checkout and Billing Details
 
-The framework is designed to demonstrate how a maintainable Selenium automation project can be structured using reusable components and separation of responsibilities.
-
+The framework demonstrates maintainable Selenium automation using the Page Object Model, reusable page methods, explicit waits, centralized WebDriver management, external test data, data-driven testing, and failure screenshot capture.
 ---
 
 ## 🛠️ Technologies & Tools
 
-| Technology / Tool  | Purpose                                    |
-| ------------------ | ------------------------------------------ |
-| Java               | Programming language                       |
-| Selenium WebDriver | Web UI automation                          |
-| TestNG             | Test execution and assertions              |
-| Maven              | Build and dependency management            |
-| WebDriverManager   | WebDriver setup                            |
-| Page Object Model  | Framework design pattern                   |
-| Git & GitHub       | Version control and source-code management |
-| Apache Commons IO  | Screenshot file handling                   |
+|| Technology / Tool  | Purpose                                     |
+| ------------------ | ------------------------------------------- |
+| Java               | Programming language                        |
+| Selenium WebDriver | Web UI automation                           |
+| TestNG             | Test execution and assertions               |
+| Maven              | Build and dependency management             |
+| WebDriverManager   | WebDriver setup                             |
+| Page Object Model  | Framework design pattern                    |
+| Git & GitHub       | Version control and source-code management  |
+| Apache Commons IO  | Screenshot file handling                    |
+| Java Properties    | External test-data/configuration management |
 
 ---
 
@@ -60,6 +62,7 @@ The framework follows the **Page Object Model** architecture.
 * **Page Classes** – Encapsulate application locators and page-specific actions.
 * **Test Classes** – Contain test scenarios and assertions.
 * **ScreenshotUtil** – Captures screenshots when a test fails.
+* **TestDataReader**– Reads test data from the external testdata.properties file.
 * **testng.xml** – Defines the regression test suite.
 
 ### Framework Flow
@@ -89,10 +92,8 @@ opencart-automation
 │   │   │   └── com.geeta.automation.opencart
 │   │   │       ├── base
 │   │   │       │   └── BasePage.java
-│   │   │       │
 │   │   │       ├── core
 │   │   │       │   └── DriverFactory.java
-│   │   │       │
 │   │   │       ├── pages
 │   │   │       │   ├── HomePage.java
 │   │   │       │   ├── LoginPage.java
@@ -101,26 +102,26 @@ opencart-automation
 │   │   │       │   ├── ProductPage.java
 │   │   │       │   ├── CartPage.java
 │   │   │       │   └── CheckoutPage.java
-│   │   │       │
 │   │   │       └── utils
 │   │   │           ├── ConfigReader.java
+│   │   │           ├── TestDataReader.java
 │   │   │           └── ScreenshotUtil.java
-│   │   │
 │   │   └── resources
 │   │       └── config.properties
 │   │
 │   └── test
-│       └── java
-│           └── com.geeta.automation.opencart
-│               ├── base
-│               │   └── BaseTest.java
-│               │
-│               └── tests
-│                   ├── LoginTest.java
-│                   ├── RegisterTest.java
-│                   ├── SearchTest.java
-│                   ├── CartTest.java
-│                   └── CheckoutTest.java
+│       ├── java
+│       │   └── com.geeta.automation.opencart
+│       │       ├── base
+│       │       │   └── BaseTest.java
+│       │       └── tests
+│       │           ├── LoginTest.java
+│       │           ├── RegisterTest.java
+│       │           ├── SearchTest.java
+│       │           ├── CartTest.java
+│       │           └── CheckoutTest.java
+│       └── resources
+│           └── testData.properties
 │
 ├── pom.xml
 ├── testng.xml
@@ -133,44 +134,47 @@ opencart-automation
 
 ### Login
 
-* Navigate to the Login page
-* Enter valid login credentials
-* Submit login
-* Verify successful login
+- Navigate to the Login page
+- Enter valid login credentials
+- Submit login
+- Verify successful login
 
 ### Registration
 
-* Navigate to the Registration page
-* Enter registration details
-* Submit the registration form
-* Validate the registration flow
+- Navigate to the Registration page
+- Enter registration details
+- Submit the registration form
+- Validate the registration flow
 
 ### Product Search
 
-* Search for a valid product
-* Verify the product appears in the search results
-* Search for an invalid product
-* Verify the appropriate no-results message
+- Search for a valid product
+- Verify the product appears in the search results
+- Search for an invalid product
+- Verify the appropriate no-results message
 
 ### Shopping Cart
-Shopping Cart
-Search for a product
-Open the product
-Add the product to the cart
-Navigate to the Shopping Cart
-Verify the cart page
-Verify the product
-Verify quantity
-Verify unit price
-Guest Checkout
-Add a product to the cart
-Navigate to Checkout
-Select Guest Checkout
-Enter billing information
-Select country and state
-Continue through the billing section
-🔧 Key Framework Features
-Reusable BasePage
+
+- Search for a product
+- Open the product
+- Add the product to the cart
+- Navigate to the Shopping Cart
+- Verify the Shopping Cart page
+- Verify the product
+- Verify quantity
+- Verify unit price
+
+### Guest Checkout
+
+- Add a product to the cart
+- Navigate to Checkout
+- Select Guest Checkout
+- Enter billing information using external test data
+- Select country and state
+- Continue through the billing section
+
+## 🔧 Key Framework Features
+### Reusable BasePage
 
 BasePage provides reusable methods for common Selenium operations, including:
 
@@ -183,13 +187,13 @@ Retrieve the current value from an input field
 
 The framework uses WebDriverWait and Selenium ExpectedConditions for synchronization rather than relying on fixed delays.
 
-Centralized Driver Management
+### Centralized Driver Management
 
 DriverFactory is responsible for WebDriver creation and management.
 
 A fresh browser instance is created for each test method through the BaseTest setup and teardown process.
 
-Configuration Management
+### Configuration Management
 
 Application configuration is maintained separately from the test implementation in:
 
@@ -197,8 +201,42 @@ src/main/resources/config.properties
 
 ConfigReader loads the configured properties so application settings can be managed centrally.
 
-📸 Failure Screenshot Capture
+### Test Data Management
 
+Test data for checkout is maintained separately from the test implementation in:
+
+`src/test/resources/testData.properties`
+
+The `TestDataReader` utility loads the properties file and provides test data to the test classes using key-value pairs.
+
+Example:
+
+```properties
+checkout.firstName=Test
+checkout.lastName=User
+checkout.email=testuser@example.com
+checkout.telephone=3035550100
+checkout.address=123 Test Street
+checkout.city=Parker
+checkout.postCode=80134
+checkout.country=United States
+checkout.state=Colorado
+```
+
+This approach reduces hardcoded test data in the test classes and makes test data easier to maintain.
+
+### Data-Driven Testing
+
+TestNG `@DataProvider` is used to execute the registration test with multiple sets of test data.
+
+### Generalized Product Validation
+
+Product search and selection are implemented using reusable product-name parameters rather than hardcoded product-specific locators.
+
+This allows the same page methods to work with different products.
+
+
+### Failure Screenshot Capture
 The framework automatically captures a screenshot when a test fails.
 
 The implementation uses Selenium's TakesScreenshot interface.
@@ -213,51 +251,55 @@ to capture the screenshot, while Apache Commons IO is used to copy the captured 
 
 This provides visual evidence that can assist with failure investigation and debugging.
 
-▶️ Test Execution
-Run the Regression Suite
+## ▶️ Test Execution
 
 The regression suite is configured in:
 
-testng.xml
+`testng.xml`
 
 The suite includes:
 
-LoginTest
-RegisterTest
-SearchTest
-CartTest
-CheckoutTest
-Maven
+- LoginTest
+- RegisterTest
+- SearchTest
+- CartTest
+- CheckoutTest
 
-Run the complete test suite with:
+### Run with Maven
 
+```bash
 mvn test
+```
 
 The project can also be executed through the TestNG suite in Eclipse.
 
-📊 Current Test Execution Result
+## 📊 Current Test Execution Result
 
 The current regression suite has been executed successfully:
 
-Total Tests Run: 10
-Passed:          10
-Failed:           0
-Skipped:          0
-✅ Current Result: 10/10 Tests Passed
+| Result | Count |
+|---|---:|
+| Total Tests | 9 |
+| Passed | 9 |
+| Failed | 0 |
+| Skipped | 0 |
+
+**Result: 9/9 tests passed ✅**
 
 This result represents the current working state of the framework and regression suite.
 
-⚙️ Configuration
+## ⚙️ Configuration
 
 Application configuration is maintained in:
 
-src/main/resources/config.properties
+`src/main/resources/config.properties`
 
 Example:
 
 browser=chrome
 url=https://demo.opencartmarketplace.com/d2/demo_1/?demo=2
-🎯 Framework Objectives
+
+## 🎯 Framework Objectives
 
 The framework was developed to demonstrate the following QA automation practices:
 
@@ -270,26 +312,25 @@ Separate configuration from test implementation
 Automate both positive and negative scenarios
 Capture screenshots for failed tests
 Organize tests into a reusable TestNG regression suite
-🚀 Future Enhancements
+
+
+## Future Enhancements
 
 Planned improvements include:
 
-Data-driven testing
-Generalized product and cart validations
-API testing
-SQL/database validation
-CI/CD integration using GitHub Actions
-Enhanced test reporting
+- API testing using Postman
+- SQL/database validation
+- CI/CD integration using GitHub Actions
+- Enhanced test reporting
+- Parallel test execution
 
-These capabilities are planned enhancements and are not currently represented as implemented features of this repository.
-
-👩‍💻 Author
+## 👩‍💻 Author
 
 Geeta Rane
 
 QA Automation Test Engineer
 Java | Selenium WebDriver | TestNG | Maven
 
-📌 About This Project
+## 📌 About This Project
 
 This project was created to demonstrate practical QA automation and framework-development skills through an e-commerce testing workflow using the OpenCart demo application.
