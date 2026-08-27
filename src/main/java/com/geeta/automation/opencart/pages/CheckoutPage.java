@@ -5,6 +5,8 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
 
 import com.geeta.automation.opencart.base.BasePage;
 
@@ -28,7 +30,8 @@ public class CheckoutPage extends BasePage {
 	private By countryDropdown = By.id("input-payment-country");
 	private By stateDropdown = By.id("input-payment-zone");
 	private By billingContinueButton= By.id("button-guest");
-	
+	private By cookieBanner = By.cssSelector("div.cc-window[aria-label='cookieconsent']");
+	private By cookieDismissButton = By.cssSelector(".cc-btn.cc-dismiss");
 	public CheckoutPage(WebDriver driver) {
 		super(driver);
 	}
@@ -88,24 +91,36 @@ public class CheckoutPage extends BasePage {
 		select.selectByVisibleText(state);
 	}
 	
-	public void clickBillingContinue() {
-		waitForElementVisible(billingContinueButton);
-		clickElement(billingContinueButton);
-		
-		wait.until(driver -> {
-			try {
-		
-		String value= driver.findElement(billingContinueButton).getAttribute("value");
-				
-				return value!= null && !value.equalsIgnoreCase("Loading...");
-		} catch (Exception e) {
-			return false;
-		}
-		});
-			
-		
-	}
+	private void closeCookieBannerIfPresent() {
+	    try {
+	        WebElement dismissButton = driver.findElement(cookieDismissButton);
 
+	        if (dismissButton.isDisplayed()) {
+	            dismissButton.click();
+
+	            wait.until(ExpectedConditions.invisibilityOfElementLocated(cookieBanner));
+	        }
+
+	    } catch (Exception e) {
+	        // Cookie banner is not present
+	    }
+	}public void clickBillingContinue() {
+	    closeCookieBannerIfPresent();
+
+	    waitForElementVisible(billingContinueButton);
+	    clickElement(billingContinueButton);
+
+	    wait.until(driver -> {
+	        try {
+	            String value = driver.findElement(billingContinueButton)
+	                    .getAttribute("value");
+
+	            return value != null && !value.equalsIgnoreCase("Loading...");
+	        } catch (Exception e) {
+	            return false;
+	        }
+	    });
+	}
 	
 	
 }
