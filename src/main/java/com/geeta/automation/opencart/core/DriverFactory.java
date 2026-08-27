@@ -7,6 +7,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import com.geeta.automation.opencart.utils.ConfigReader;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import org.openqa.selenium.PageLoadStrategy;
 
 public class DriverFactory {
 
@@ -21,7 +22,7 @@ public class DriverFactory {
             WebDriverManager.chromedriver().setup();
 
             ChromeOptions options = new ChromeOptions();
-
+            options.setPageLoadStrategy(PageLoadStrategy.EAGER);
             options.addArguments("--headless=new");
             options.addArguments("--no-sandbox");
             options.addArguments("--disable-dev-shm-usage");

@@ -2,6 +2,8 @@ package com.geeta.automation.opencart.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+
 import com.geeta.automation.opencart.base.BasePage;
 
 
@@ -20,9 +22,13 @@ public class CartPage extends BasePage {
 		
 	//verifies that the shopping cart page is displayed
 		public boolean isShoppingCartDisplayed() {
-			return isElementDisplayed(shoppingCartHeading);
+		    try {
+		        wait.until(ExpectedConditions.visibilityOfElementLocated(shoppingCartHeading));
+		        return true;
+		    } catch (Exception e) {
+		        return false;
+		    }
 		}
-		
 
 	//Locator for Checkout button
 		private By checkoutButton= By.xpath("//a[contains(@href,'route=checkout/checkout')and normalize-space()='Checkout']");
