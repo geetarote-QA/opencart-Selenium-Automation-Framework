@@ -1,16 +1,3 @@
-## 🛠️ Technologies & Tools
-| Technology / Tool  | Purpose                                     |
-| ------------------ | ------------------------------------------- |
-| Java               | Programming language                        |
-| Selenium WebDriver | Web UI automation                           |
-| TestNG             | Test execution and assertions               |
-| Maven              | Build and dependency management             |
-| WebDriverManager   | WebDriver setup                             |
-| Page Object Model  | Framework design pattern                    |
-| Git & GitHub       | Version control and source-code management  |
-| Apache Commons IO  | Screenshot file handling                    |
-| Java Properties    | External test-data/configuration management |
-
 
 # OpenCart Selenium Automation Framework
 
@@ -46,7 +33,7 @@ The framework demonstrates maintainable Selenium automation using the Page Objec
 | Git & GitHub       | Version control and source-code management  |
 | Apache Commons IO  | Screenshot file handling                    |
 | Java Properties    | External test-data/configuration management |
-
+| GitHub Actions     | CI/CD automation for running the Maven test suite |
 ---
 
 ## 🏗️ Framework Architecture
@@ -86,6 +73,10 @@ OpenCart Application
 ```text
 opencart-automation
 │
+├── .github
+│   └── workflows
+│       └── maven.yml
+
 ├── src
 │   ├── main
 │   │   ├── java
@@ -121,7 +112,7 @@ opencart-automation
 │       │           ├── CartTest.java
 │       │           └── CheckoutTest.java
 │       └── resources
-│           └── testData.properties
+│           └── testdata.properties
 │
 ├── pom.xml
 ├── testng.xml
@@ -205,7 +196,7 @@ ConfigReader loads the configured properties so application settings can be mana
 
 Test data for checkout is maintained separately from the test implementation in:
 
-`src/test/resources/testData.properties`
+`src/test/resources/testdata.properties`
 
 The `TestDataReader` utility loads the properties file and provides test data to the test classes using key-value pairs.
 
@@ -299,6 +290,24 @@ Example:
 browser=chrome
 url=https://demo.opencartmarketplace.com/d2/demo_1/?demo=2
 
+## 🔄 CI/CD with GitHub Actions
+
+GitHub Actions is configured to automatically execute the Maven/TestNG regression suite when changes are pushed to the repository.
+
+The workflow:
+
+- Runs on an Ubuntu Linux environment
+- Sets up Java 21
+- Uses Maven to execute the TestNG regression suite
+- Runs Selenium tests using Chrome in headless mode
+- Provides the test execution result directly in GitHub Actions
+
+The workflow configuration is located at:
+
+`.github/workflows/maven.yml`
+
+The current CI workflow successfully executes the 9-test regression suite.
+
 ## 🎯 Framework Objectives
 
 The framework was developed to demonstrate the following QA automation practices:
@@ -320,7 +329,6 @@ Planned improvements include:
 
 - API testing using Postman
 - SQL/database validation
-- CI/CD integration using GitHub Actions
 - Enhanced test reporting
 - Parallel test execution
 
